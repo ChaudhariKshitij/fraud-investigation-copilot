@@ -1,0 +1,133 @@
+{
+  "detection": {
+    "txn_precision": 0.648,
+    "txn_recall": 0.878,
+    "fraud_customers": 40,
+    "fraud_customers_caught": 40,
+    "customer_recall": 1.0,
+    "flagged_customers": 93,
+    "customer_precision": 0.43
+  },
+  "retrieval": {
+    "baseline/dev": {
+      "n": 10,
+      "recall@1": 0.8,
+      "recall@3": 0.9,
+      "top1_misses": [
+        {
+          "q": "one huge purchase far above normal spending",
+          "expected": "Sudden Amount Spike",
+          "got": "False Positive Guidance"
+        },
+        {
+          "q": "card used abroad overnight, customer never travels",
+          "expected": "Unusual Geography At Night",
+          "got": "Card Velocity Attack"
+        }
+      ]
+    },
+    "baseline/heldout_seen_before_fix": {
+      "n": 20,
+      "recall@1": 0.8,
+      "recall@3": 1.0,
+      "top1_misses": [
+        {
+          "q": "stolen card numbers being tested with rapid low-value charges",
+          "expected": "Card Velocity Attack",
+          "got": "Sudden Amount Spike"
+        },
+        {
+          "q": "how to handle an unusually large payment on an account",
+          "expected": "Sudden Amount Spike",
+          "got": "False Positive Guidance"
+        },
+        {
+          "q": "several transfers of 9,500 over a day",
+          "expected": "Structuring Below Threshold",
+          "got": "False Positive Guidance"
+        },
+        {
+          "q": "how should I word a conclusion without claiming certainty",
+          "expected": "Investigation Report Standards",
+          "got": "False Positive Guidance"
+        }
+      ]
+    },
+    "baseline/fresh_unseen": {
+      "n": 20,
+      "recall@1": 0.7,
+      "recall@3": 0.95,
+      "top1_misses": [
+        {
+          "q": "cloned card suspected because use appeared overseas while owner was at home",
+          "expected": "Unusual Geography At Night",
+          "got": "Investigation Report Standards"
+        },
+        {
+          "q": "list of things every case write-up has to include",
+          "expected": "Investigation Report Standards",
+          "got": "False Positive Guidance"
+        },
+        {
+          "q": "what limitations should be mentioned in an automated assessment",
+          "expected": "Investigation Report Standards",
+          "got": "False Positive Guidance"
+        },
+        {
+          "q": "customer just got paid and bought a television",
+          "expected": "False Positive Guidance",
+          "got": "Structuring Below Threshold"
+        },
+        {
+          "q": "recurring payment that looks like a pattern but is not suspicious",
+          "expected": "False Positive Guidance",
+          "got": "Structuring Below Threshold"
+        },
+        {
+          "q": "how many charges per hour is suspicious for one card",
+          "expected": "Card Velocity Attack",
+          "got": "Structuring Below Threshold"
+        }
+      ]
+    },
+    "improved/dev": {
+      "n": 10,
+      "recall@1": 1.0,
+      "recall@3": 1.0,
+      "top1_misses": []
+    },
+    "improved/heldout_seen_before_fix": {
+      "n": 20,
+      "recall@1": 1.0,
+      "recall@3": 1.0,
+      "top1_misses": []
+    },
+    "improved/fresh_unseen": {
+      "n": 20,
+      "recall@1": 0.85,
+      "recall@3": 0.95,
+      "top1_misses": [
+        {
+          "q": "customer just got paid and bought a television",
+          "expected": "False Positive Guidance",
+          "got": "Structuring Below Threshold"
+        },
+        {
+          "q": "recurring payment that looks like a pattern but is not suspicious",
+          "expected": "False Positive Guidance",
+          "got": "Structuring Below Threshold"
+        },
+        {
+          "q": "how many charges per hour is suspicious for one card",
+          "expected": "Card Velocity Attack",
+          "got": "Structuring Below Threshold"
+        }
+      ]
+    }
+  },
+  "investigator": {
+    "fraud_cases_judged": 40,
+    "typology_accuracy": 1.0,
+    "wrong": []
+  }
+}
